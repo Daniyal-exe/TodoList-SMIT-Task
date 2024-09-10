@@ -86,7 +86,7 @@ body {
 }
 .button-wrapper {
   display: flex;
-  gap: 10px; /* space between buttons */
+  gap: 10px;
 }
 .todo-text {
   word-break: break-word;

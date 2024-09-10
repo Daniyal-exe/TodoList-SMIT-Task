@@ -11,22 +11,6 @@ const classManager = new ClassManager(contentDiv, predefinedClasses);
 
 let selectedClass = null;
 
-// function searchClass() {
-//     const className = classSearchInput.value.trim();
-//     if (!predefinedClasses.includes(className)) {
-//         customAlert('Invalid class. Please enter a correct class name.');
-//         selectedClass = null;
-//         todoInput.disabled = true;
-//         addButton.disabled = true;
-//     } else {
-//         selectedClass = className;
-//         todoInput.disabled = false;
-//         addButton.disabled = false;
-//         classManager.showClassContent(className);
-//     }
-// }
-
-
 function searchClass() {
     const className = classSearchInput.value.trim();
     const classNameDisplay = document.getElementById('class-name');
