@@ -3,7 +3,6 @@ export class ClassManager {
         this.contentDiv = contentDiv;
         this.classes = {};
 
-        // Initialize predefined classes
         predefinedClasses.forEach(className => {
             this.classes[className] = [];
         });
@@ -14,7 +13,7 @@ export class ClassManager {
     }
 
     renderClassContent(className) {
-        this.contentDiv.innerHTML = ''; // Clear content
+        this.contentDiv.innerHTML = '';
 
         const todoList = this.classes[className] || [];
 
@@ -30,57 +29,16 @@ export class ClassManager {
         this.renderClassContent(className);
     }
 
-    // createTodoItem(todo, className, index) {
-    //     const todoItem = document.createElement('div');
-    //     todoItem.classList.add('todo-item');
-
-    //     const text = document.createElement('span');
-    //     text.textContent = todo;
-
-    //     const editButton = document.createElement('button');
-    //     const editIcon = document.createElement('i');
-    //     editIcon.classList.add('ri-pencil-line');
-    //     editButton.appendChild(editIcon);
-
-    //     editButton.addEventListener('click', () => {
-    //         this.openEditModal(todo, (newText) => {
-    //             if (newText !== null && newText.trim()) {
-    //                 this.classes[className][index] = newText.trim();
-    //                 this.renderClassContent(className);
-    //             }
-    //         });
-    //     });
-
-
-    //     const deleteButton = document.createElement('button');
-    //     const deleteIcon = document.createElement('i');
-    //     deleteIcon.classList.add('ri-delete-bin-line');
-    //     deleteButton.appendChild(deleteIcon);
-    //     deleteButton.addEventListener('click', () => {
-    //         this.classes[className].splice(index, 1);
-    //         this.renderClassContent(className);
-    //     });
-
-
-    //     todoItem.appendChild(text);
-    //     todoItem.appendChild(editButton);
-    //     todoItem.appendChild(deleteButton);
-
-    //     return todoItem;
-    // }
-
-
     createTodoItem(todo, className, index) {
         const todoItem = document.createElement('div');
         todoItem.classList.add('todo-item');
     
         const text = document.createElement('span');
         text.textContent = todo;
-        text.classList.add('todo-text');  // Add a class for text styling
+        text.classList.add('todo-text');
     
-        // Create a wrapper div for the buttons
         const buttonWrapper = document.createElement('div');
-        buttonWrapper.classList.add('button-wrapper');  // Add a class for button styling
+        buttonWrapper.classList.add('button-wrapper');
     
         const editButton = document.createElement('button');
         const editIcon = document.createElement('i');
@@ -106,11 +64,11 @@ export class ClassManager {
             this.renderClassContent(className);
         });
     
-        // Append buttons to the wrapper
+        
         buttonWrapper.appendChild(editButton);
         buttonWrapper.appendChild(deleteButton);
     
-        // Append text and button wrapper to todo item
+        
         todoItem.appendChild(text);
         todoItem.appendChild(buttonWrapper);
     

@@ -11,20 +11,44 @@ const classManager = new ClassManager(contentDiv, predefinedClasses);
 
 let selectedClass = null;
 
+// function searchClass() {
+//     const className = classSearchInput.value.trim();
+//     if (!predefinedClasses.includes(className)) {
+//         customAlert('Invalid class. Please enter a correct class name.');
+//         selectedClass = null;
+//         todoInput.disabled = true;
+//         addButton.disabled = true;
+//     } else {
+//         selectedClass = className;
+//         todoInput.disabled = false;
+//         addButton.disabled = false;
+//         classManager.showClassContent(className);
+//     }
+// }
+
+
 function searchClass() {
     const className = classSearchInput.value.trim();
+    const classNameDisplay = document.getElementById('class-name');
+
     if (!predefinedClasses.includes(className)) {
         customAlert('Invalid class. Please enter a correct class name.');
         selectedClass = null;
         todoInput.disabled = true;
         addButton.disabled = true;
+        classNameDisplay.style.display = 'none';
     } else {
         selectedClass = className;
         todoInput.disabled = false;
         addButton.disabled = false;
         classManager.showClassContent(className);
+
+        
+        classNameDisplay.textContent = className;
+        classNameDisplay.style.display = 'block';
     }
 }
+
 
 function addTodo() {
     const text = todoInput.value.trim();
@@ -44,16 +68,16 @@ function openEditModal(todoItem, callback) {
     const saveButton = document.getElementById('save-edit');
     const cancelButton = document.getElementById('cancel-edit');
 
-    editInput.value = todoItem.textContent; // Pre-fill with current todo text
+    editInput.value = todoItem.textContent;
     modal.style.display = 'block';
 
     saveButton.onclick = function() {
         const newText = editInput.value.trim();
         if (newText) {
-            callback(newText);  // Pass the new text to the callback
+            callback(newText);
             modal.style.display = 'none';
         } else {
-            customAlert('Todo cannot be empty!'); // Use customAlert instead of alert
+            customAlert('Todo cannot be empty!');
         }
     };
 
@@ -68,11 +92,9 @@ function openEditModal(todoItem, callback) {
     };
 }
 
-// Event listeners for buttons
 searchButton.addEventListener('click', searchClass);
 addButton.addEventListener('click', addTodo);
 
-// Event listeners for pressing "Enter"
 classSearchInput.addEventListener('keypress', (e) => {
     if (e.key === 'Enter') {
         searchClass();
@@ -94,7 +116,6 @@ contentDiv.addEventListener('click', function(event) {
 });
 
 
-// Custom alert modal implementation
 function customAlert(message) {
     const modal = document.getElementById('custom-alert');
     const alertText = document.getElementById('alert-text');
@@ -114,5 +135,4 @@ function customAlert(message) {
     };
 }
 
-// Override the default alert
 window.alert = customAlert;
